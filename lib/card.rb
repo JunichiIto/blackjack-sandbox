@@ -22,4 +22,15 @@ class Card
     @suit = suit
     @number = number
   end
+
+  def point
+    case number
+    when 'A'
+      1
+    when 'J', 'Q', 'K'
+      10
+    else
+      number.to_i
+    end
+  end
 end

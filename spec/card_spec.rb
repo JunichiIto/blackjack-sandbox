@@ -11,4 +11,16 @@ describe Card do
       end
     end
   end
+
+  describe '#point' do
+    it 'has a valid point' do
+      expect(Card.new(Card::HEART, 'A').point).to eq 1
+      expect(Card.new(Card::HEART, '2').point).to eq 2
+      expect(Card.new(Card::HEART, '9').point).to eq 9
+      expect(Card.new(Card::HEART, '10').point).to eq 10
+      expect(Card.new(Card::HEART, 'J').point).to eq 10
+      expect(Card.new(Card::HEART, 'Q').point).to eq 10
+      expect(Card.new(Card::HEART, 'K').point).to eq 10
+    end
+  end
 end
