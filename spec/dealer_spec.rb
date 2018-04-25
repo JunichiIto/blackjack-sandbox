@@ -1,9 +1,7 @@
 describe Dealer do
-  describe '#first_card, #second_cars, #total, #hit' do
+  describe '#total, #hit' do
     it 'behaves properly' do
       dealer = Dealer.new(Card.new(:heart, 'J'), Card.new(:heart, '6'))
-      expect(dealer.first_card).to have_attributes(suit: :heart, number: 'J')
-      expect(dealer.second_card).to have_attributes(suit: :heart, number: '6')
       expect(dealer.total).to eq 16
 
       dealer.hit(Card.new(:heart, 'A'))
