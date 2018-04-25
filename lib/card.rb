@@ -1,10 +1,5 @@
 class Card
-  SUITS = [
-    HEART = :heart,
-    DIAMOND = :diamond,
-    CLUB = :club,
-    SPADE = :spade
-  ]
+  SUITS = %i(heart diamond club spade)
 
   NUMBERS = ['A', *'2'..'9', '10', 'J', 'Q', 'K']
 

@@ -14,13 +14,13 @@ describe Card do
 
   describe '#point' do
     it 'has a valid point' do
-      expect(Card.new(Card::HEART, 'A').point).to eq 1
-      expect(Card.new(Card::HEART, '2').point).to eq 2
-      expect(Card.new(Card::HEART, '9').point).to eq 9
-      expect(Card.new(Card::HEART, '10').point).to eq 10
-      expect(Card.new(Card::HEART, 'J').point).to eq 10
-      expect(Card.new(Card::HEART, 'Q').point).to eq 10
-      expect(Card.new(Card::HEART, 'K').point).to eq 10
+      expect(Card.new(:heart, 'A').point).to eq 1
+      expect(Card.new(:heart, '2').point).to eq 2
+      expect(Card.new(:heart, '9').point).to eq 9
+      expect(Card.new(:heart, '10').point).to eq 10
+      expect(Card.new(:heart, 'J').point).to eq 10
+      expect(Card.new(:heart, 'Q').point).to eq 10
+      expect(Card.new(:heart, 'K').point).to eq 10
     end
   end
 end
