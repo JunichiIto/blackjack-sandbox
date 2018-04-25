@@ -28,4 +28,17 @@ class Card
       number.to_i
     end
   end
+
+  def to_s
+    suit_str =
+      case suit
+      when :heart then 'ハート'
+      when :diamond then 'ダイヤ'
+      when :club then 'クラブ'
+      when :spade then 'スペード'
+      else
+        raise "Unknown suit: #{suit}"
+      end
+    "#{suit_str}の#{number}"
+  end
 end

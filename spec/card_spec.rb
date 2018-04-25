@@ -23,4 +23,13 @@ describe Card do
       expect(Card.new(:heart, 'K').point).to eq 10
     end
   end
+
+  describe '#to_s' do
+    example do
+      expect(Card.new(:heart, 'A').to_s).to eq 'ハートのA'
+      expect(Card.new(:diamond, '2').to_s).to eq 'ダイヤの2'
+      expect(Card.new(:club, '10').to_s).to eq 'クラブの10'
+      expect(Card.new(:spade, 'K').to_s).to eq 'スペードのK'
+    end
+  end
 end
