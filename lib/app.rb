@@ -25,13 +25,18 @@ class App
   def show_intro
     puts "ブラックジャックへようこそ！"
     puts "ゲームを開始します。"
+    puts_blank_row
 
     @player.cards.each do |card|
       show_player_card(card)
     end
 
+    puts_blank_row
+
     show_dealer_card(@dealer.cards[0])
     puts "ディーラーの2枚目のカードは分かりません。"
+
+    puts_blank_row
   end
 
   def play_game
@@ -45,14 +50,16 @@ class App
       return :lose
     end
 
+    puts_blank_row
     puts "ディーラーの2枚目のカードは#{@dealer.cards[1]}でした。"
 
     begin
       puts "ディーラーの現在の得点は#{@dealer.total}です。"
+      puts_blank_row
     end while dealer_hit?
 
     if @dealer.bust?
-      puts "#{@dealer.total}点でバストしました。"
+      puts "ディーラーは#{@dealer.total}点でバストしました。"
       return :win
     end
 
@@ -68,6 +75,7 @@ class App
 
   def show_outro(result)
     puts result_text(result)
+    puts_blank_row
     puts "ブラックジャック終了！また遊んでね★"
   end
 
@@ -109,6 +117,10 @@ class App
     when :draw then "引き分けです。"
     else raise "Unknown result: #{result}"
     end
+  end
+
+  def puts_blank_row
+    puts
   end
 end
 
