@@ -29,13 +29,15 @@ describe App do
             30点でバストしました。
             あなたの負けです。
 
-            ブラックジャック終了！また遊んでね★
+            ブラックジャック終了！もう一度遊びますか？
+            y/n: 
+            さようなら。また遊んでね★
           TEXT
         end
         example do
           app = App.new
           allow(app).to receive(:generate_cards).and_return(cards)
-          allow(STDIN).to receive(:gets).and_return('y')
+          allow(STDIN).to receive(:gets).and_return('y', 'n')
           expect { app.run }.to output(expected).to_stdout
         end
       end
@@ -74,13 +76,15 @@ describe App do
             ディーラーの得点は19です。
             あなたの負けです。
 
-            ブラックジャック終了！また遊んでね★
+            ブラックジャック終了！もう一度遊びますか？
+            y/n: 
+            さようなら。また遊んでね★
           TEXT
         end
         example do
           app = App.new
           allow(app).to receive(:generate_cards).and_return(cards)
-          allow(STDIN).to receive(:gets).and_return('n')
+          allow(STDIN).to receive(:gets).and_return('n', '', '', 'n')
           expect { app.run }.to output(expected).to_stdout
         end
       end
@@ -120,13 +124,15 @@ describe App do
             ディーラーは22点でバストしました。
             あなたの勝ちです！
 
-            ブラックジャック終了！また遊んでね★
+            ブラックジャック終了！もう一度遊びますか？
+            y/n: 
+            さようなら。また遊んでね★
           TEXT
         end
         example do
           app = App.new
           allow(app).to receive(:generate_cards).and_return(cards)
-          allow(STDIN).to receive(:gets).and_return('n')
+          allow(STDIN).to receive(:gets).and_return('n', '', '', 'n')
           expect { app.run }.to output(expected).to_stdout
         end
       end
@@ -170,13 +176,15 @@ describe App do
             ディーラーの得点は19です。
             あなたの勝ちです！
 
-            ブラックジャック終了！また遊んでね★
+            ブラックジャック終了！もう一度遊びますか？
+            y/n: 
+            さようなら。また遊んでね★
           TEXT
         end
         example do
           app = App.new
           allow(app).to receive(:generate_cards).and_return(cards)
-          allow(STDIN).to receive(:gets).and_return('y', 'n')
+          allow(STDIN).to receive(:gets).and_return('y', 'n', '', '', 'n')
           expect { app.run }.to output(expected).to_stdout
         end
       end
@@ -216,13 +224,15 @@ describe App do
           ディーラーの得点は17です。
           引き分けです。
 
-          ブラックジャック終了！また遊んでね★
+          ブラックジャック終了！もう一度遊びますか？
+          y/n: 
+          さようなら。また遊んでね★
         TEXT
       end
       example do
         app = App.new
         allow(app).to receive(:generate_cards).and_return(cards)
-        allow(STDIN).to receive(:gets).and_return('n')
+        allow(STDIN).to receive(:gets).and_return('n', '', '', 'n')
         expect { app.run }.to output(expected).to_stdout
       end
     end

@@ -8,10 +8,14 @@ class App
   end
 
   def run
-    init_app
-    show_intro
-    result = play_game
-    show_outro(result)
+    puts "ブラックジャックへようこそ！"
+    begin
+      init_app
+      show_intro
+      result = play_game
+      show_outro(result)
+    end while try_again?
+    puts "さようなら。また遊んでね★"
   end
 
   private
@@ -23,7 +27,6 @@ class App
   end
 
   def show_intro
-    puts "ブラックジャックへようこそ！"
     puts "ゲームを開始します。"
     puts_blank_row
 
@@ -77,8 +80,15 @@ class App
 
   def show_outro(result)
     puts result_text(result)
+  end
+
+  def try_again?
     puts_blank_row
-    puts "ブラックジャック終了！また遊んでね★"
+    puts "ブラックジャック終了！もう一度遊びますか？"
+    print "y/n: "
+    answer = STDIN.gets.chomp.downcase == 'y'
+    puts_blank_row
+    answer
   end
 
   def generate_cards
