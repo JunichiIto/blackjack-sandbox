@@ -9,8 +9,10 @@ class App
 
   def run
     @results = []
+
     puts "ブラックジャックへようこそ！"
     puts_blank_row
+
     begin
       init_app
       show_intro
@@ -18,6 +20,7 @@ class App
       @results << result
       show_outro(result)
     end while try_again?
+
     puts "さようなら。また遊んでね★"
   end
 
@@ -62,8 +65,7 @@ class App
 
     begin
       puts "ディーラーの現在の得点は#{@dealer.total}です。"
-      print 'press return: '
-      gets
+      gets_return
       puts_blank_row
     end while dealer_hit?
 
@@ -97,8 +99,7 @@ class App
   def try_again?
     puts_blank_row
     puts "ブラックジャック終了！もう一度遊びますか？"
-    print "y/n: "
-    answer = gets.chomp.downcase == 'y'
+    answer = gets_yes?
     puts_blank_row
     answer
   end
@@ -108,8 +109,7 @@ class App
   end
 
   def player_hit?
-    print "y/n: "
-    if gets.chomp.downcase == 'y'
+    if gets_yes?
       puts_blank_row
       card = @cards.shift
       show_player_card(card)
@@ -125,6 +125,16 @@ class App
       @dealer.hit(card)
       true
     end
+  end
+
+  def gets_yes?
+    print "y/n: "
+    gets.chomp.downcase == 'y'
+  end
+
+  def gets_return
+    print "press return: "
+    gets
   end
 
   def show_player_card(card)
