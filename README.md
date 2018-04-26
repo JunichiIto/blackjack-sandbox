@@ -4,6 +4,10 @@ CUI blackjack game.
 
 See also: https://qiita.com/hirossyi73/items/cf8648c31898216312e5
 
+## Requirements
+
+- Ruby 2.4.0 or higher
+
 ## Play sample
 
 ```
