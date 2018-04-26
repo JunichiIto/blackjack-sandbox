@@ -88,6 +88,7 @@ class App
   def player_hit?
     print "y/n: "
     if STDIN.gets.chomp.downcase == 'y'
+      puts_blank_row
       card = @cards.shift
       show_player_card(card)
       @player.hit(card)
