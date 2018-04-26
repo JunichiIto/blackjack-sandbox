@@ -26,7 +26,7 @@ describe App do
 
             あなたの現在の得点は20です。
             カードを引きますか？
-            y/n: 
+            y/n: y/n: 
             あなたの引いたカードはハートのQです。
             30点でバストしました。
             あなたの負けです。
@@ -42,7 +42,8 @@ describe App do
         example do
           app = App.new
           allow(app).to receive(:generate_cards).and_return(cards)
-          allow(app).to receive(:gets).and_return('y', 'n')
+          # input 'x' to retry y/n
+          allow(app).to receive(:gets).and_return('x', 'y', 'n')
           expect { app.run }.to output(expected).to_stdout
         end
       end
@@ -72,7 +73,7 @@ describe App do
 
             あなたの現在の得点は17です。
             カードを引きますか？
-            y/n: y/n: 
+            y/n: 
             ディーラーの2枚目のカードはハートの3でした。
             ディーラーの現在の得点は11です。
             press return: 
@@ -94,7 +95,7 @@ describe App do
         example do
           app = App.new
           allow(app).to receive(:generate_cards).and_return(cards)
-          allow(app).to receive(:gets).and_return('x', 'n', '', '', 'n')
+          allow(app).to receive(:gets).and_return('n', '', '', 'n')
           expect { app.run }.to output(expected).to_stdout
         end
       end
