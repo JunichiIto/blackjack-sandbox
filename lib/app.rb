@@ -18,7 +18,7 @@ class App
       show_intro
       result = play_game
       @results << result
-      show_outro(result)
+      show_result(result)
     end while try_again?
 
     puts "さようなら。また遊んでね★"
@@ -81,7 +81,7 @@ class App
     end
   end
 
-  def show_outro(result)
+  def show_result(result)
     puts result_text(result)
     puts_blank_row
 
