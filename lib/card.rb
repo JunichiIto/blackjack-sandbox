@@ -30,14 +30,16 @@ class Card
   end
 
   def to_s
-    suit_str =
-      case suit
-      when :heart then 'ハート'
-      when :diamond then 'ダイヤ'
-      when :club then 'クラブ'
-      when :spade then 'スペード'
-      else raise "Unknown suit: #{suit}"
-      end
-    "#{suit_str}の#{number}"
+    "#{suit_text}の#{number}"
+  end
+
+  def suit_text
+    case suit
+    when :heart then 'ハート'
+    when :diamond then 'ダイヤ'
+    when :club then 'クラブ'
+    when :spade then 'スペード'
+    else raise "Unknown suit: #{suit}"
+    end
   end
 end
