@@ -2,6 +2,8 @@
 
 CUI blackjack game.
 
+![6tncmuldn0](https://user-images.githubusercontent.com/1148320/39336911-e5bdd50e-49f4-11e8-9651-8b7692c7bc0f.gif)
+
 See also: https://qiita.com/hirossyi73/items/cf8648c31898216312e5
 
 ## Requirements
