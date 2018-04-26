@@ -1,16 +1,11 @@
 class Card
   SUITS = %i(heart diamond club spade)
-
   NUMBERS = ['A', *'2'..'9', '10', 'J', 'Q', 'K']
 
   attr_reader :suit, :number
 
   def self.generate_cards
-    SUITS.flat_map { |suit|
-      NUMBERS.map { |n|
-        self.new(suit, n)
-      }
-    }
+    SUITS.product(NUMBERS).map { |suit, n| self.new(suit, n) }
   end
 
   def initialize(suit, number)
