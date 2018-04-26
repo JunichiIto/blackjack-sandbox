@@ -8,6 +8,10 @@ See also: https://qiita.com/hirossyi73/items/cf8648c31898216312e5
 
 - Ruby 2.4.0 or higher
 
+## Limitations
+
+- "A" cards are always counted as one (not eleven or one.)
+
 ## Play sample
 
 ```
