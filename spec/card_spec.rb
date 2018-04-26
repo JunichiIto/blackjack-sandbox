@@ -6,6 +6,7 @@ describe Card do
 
       cards_by_suit = cards.group_by(&:suit)
       expect(cards_by_suit.keys).to contain_exactly(:heart, :diamond, :club, :spade)
+
       cards_by_suit.values.each do |cards|
         expect(cards.map(&:number)).to contain_exactly(*%w[A 2 3 4 5 6 7 8 9 10 J Q K])
       end
@@ -25,7 +26,7 @@ describe Card do
   end
 
   describe '#to_s' do
-    example do
+    it 'returns a valid string' do
       expect(Card.new(:heart, 'A').to_s).to eq 'ハートのA'
       expect(Card.new(:diamond, '2').to_s).to eq 'ダイヤの2'
       expect(Card.new(:club, '10').to_s).to eq 'クラブの10'
