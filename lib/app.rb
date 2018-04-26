@@ -8,9 +8,9 @@ class App
   end
 
   def run
-    @cards = Card.generate_cards.shuffle
-    @dealer = Dealer.new(*@cards.shift(2))
+    @cards = generate_cards
     @player = Player.new(*@cards.shift(2))
+    @dealer = Dealer.new(*@cards.shift(2))
 
     puts "ブラックジャックへようこそ！"
     puts "ゲームを開始します。"
@@ -59,9 +59,13 @@ class App
 
   private
 
+  def generate_cards
+    Card.generate_cards.shuffle
+  end
+
   def player_hit?
     print "y/n: "
-    if gets.chomp.downcase == 'y'
+    if STDIN.gets.chomp.downcase == 'y'
       card = @cards.shift
       puts "あなたの引いたカードは#{card}です。"
       @player.hit(card)
