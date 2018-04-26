@@ -56,4 +56,15 @@ describe Player do
       end
     end
   end
+
+  describe '#stand!, #stand?, #finished?' do
+    it 'behaves properly' do
+      player = Player.new(Card.new(:heart, 'J'), Card.new(:heart, 'Q'))
+      expect(player.stand?).to be_falsey
+      expect(player.finished?).to be_falsey
+      player.stand!
+      expect(player.stand?).to be_truthy
+      expect(player.finished?).to be_truthy
+    end
+  end
 end

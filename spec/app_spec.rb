@@ -29,6 +29,7 @@ describe App do
             y/n: y/n: 
             あなたの引いたカードはハートのQです。
             30点でバストしました。
+            press return: 
             あなたの負けです。
 
             対戦成績: 0勝1敗0分
@@ -54,7 +55,7 @@ describe App do
             Card.new(:club, '7'),
             Card.new(:spade, 'K'),
             Card.new(:spade, '8'),
-            Card.new(:heart, '3'),
+            Card.new(:heart, 'J'),
             Card.new(:diamond, '8'),
           ]
         end
@@ -74,14 +75,11 @@ describe App do
             あなたの現在の得点は17です。
             カードを引きますか？
             y/n: 
-            ディーラーの2枚目のカードはハートの3でした。
-            ディーラーの現在の得点は11です。
-            press return: 
-            ディーラーの引いたカードはダイヤの8です。
-            ディーラーの現在の得点は19です。
+            ディーラーの2枚目のカードはハートのJでした。
+            ディーラーの得点は18です。
             press return: 
             あなたの得点は17です。
-            ディーラーの得点は19です。
+            ディーラーの得点は18です。
             あなたの負けです。
 
             対戦成績: 0勝1敗0分
@@ -95,7 +93,7 @@ describe App do
         example do
           app = App.new
           allow(app).to receive(:generate_cards).and_return(cards)
-          allow(app).to receive(:gets).and_return('n', '', '', 'n')
+          allow(app).to receive(:gets).and_return('n', '', 'n')
           expect { app.run }.to output(expected).to_stdout
         end
       end
@@ -132,9 +130,8 @@ describe App do
             ディーラーの現在の得点は14です。
             press return: 
             ディーラーの引いたカードはダイヤの8です。
-            ディーラーの現在の得点は22です。
-            press return: 
             ディーラーは22点でバストしました。
+            press return: 
             あなたの勝ちです！
 
             対戦成績: 1勝0敗0分
@@ -148,7 +145,7 @@ describe App do
         example do
           app = App.new
           allow(app).to receive(:generate_cards).and_return(cards)
-          allow(app).to receive(:gets).and_return('n', '', '', 'n')
+          allow(app).to receive(:gets).and_return('n', '', 'n')
           expect { app.run }.to output(expected).to_stdout
         end
       end
@@ -188,7 +185,7 @@ describe App do
             ディーラーの現在の得点は11です。
             press return: 
             ディーラーの引いたカードはダイヤの8です。
-            ディーラーの現在の得点は19です。
+            ディーラーの得点は19です。
             press return: 
             あなたの得点は20です。
             ディーラーの得点は19です。
@@ -241,7 +238,7 @@ describe App do
           ディーラーの現在の得点は11です。
           press return: 
           ディーラーの引いたカードはダイヤの6です。
-          ディーラーの現在の得点は17です。
+          ディーラーの得点は17です。
           press return: 
           あなたの得点は17です。
           ディーラーの得点は17です。
@@ -309,6 +306,7 @@ describe App do
           y/n: 
           あなたの引いたカードはダイヤの10です。
           22点でバストしました。
+          press return: 
           あなたの負けです。
 
           対戦成績: 0勝1敗0分
@@ -335,7 +333,7 @@ describe App do
           ディーラーの現在の得点は10です。
           press return: 
           ディーラーの引いたカードはダイヤの9です。
-          ディーラーの現在の得点は19です。
+          ディーラーの得点は19です。
           press return: 
           あなたの得点は21です。
           ディーラーの得点は19です。
@@ -362,7 +360,7 @@ describe App do
           ディーラーの現在の得点は13です。
           press return: 
           ディーラーの引いたカードはダイヤの4です。
-          ディーラーの現在の得点は17です。
+          ディーラーの得点は17です。
           press return: 
           あなたの得点は11です。
           ディーラーの得点は17です。
@@ -380,7 +378,7 @@ describe App do
         app = App.new
         allow(app).to receive(:generate_cards).and_return(cards)
         allow(app).to receive(:gets).and_return(
-          'y', 'y', 'y',
+          'y', 'y', '', 'y',
           'y', '', '', '', 'y',
           'n', '', '', 'n',
         )
