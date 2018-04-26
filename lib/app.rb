@@ -106,9 +106,12 @@ class App
   end
 
   def player_hit_and_finished?
-    if @player.twenty_one?
-      show_player_total
-    elsif @player.hit_more?
+    finished = @player.finished?
+    if finished
+      if @player.twenty_one?
+        show_player_total
+      end
+    else
       puts "あなたの現在の得点は#{@player.total}です。"
       puts "カードを引きますか？"
       if gets_yes?
@@ -116,25 +119,24 @@ class App
         card = @cards.shift
         show_player_card(card)
         @player.hit(card)
-        return false
+      else
+        finished = true
       end
     end
-
-    true
+    finished
   end
 
   def dealer_hit_and_finished?
     puts "ディーラーの現在の得点は#{@dealer.total}です。"
     gets_return
     puts_blank_row
-    if @dealer.hit_more?
+    finished = @dealer.finished?
+    unless finished
       card = @cards.shift
       show_dealer_card(card)
       @dealer.hit(card)
-      false
-    else
-      true
     end
+    finished
   end
 
   def gets_yes?

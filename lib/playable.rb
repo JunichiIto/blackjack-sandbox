@@ -10,4 +10,8 @@ module Playable
   def bust?
     total > 21
   end
+
+  def finished?
+    !hit_more?
+  end
 end
