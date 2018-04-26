@@ -59,12 +59,10 @@ class App
     puts "あなたの得点は#{@player.total}です。"
     puts "ディーラーの得点は#{@dealer.total}です。"
 
-    if @player.total == @dealer.total
-      :draw
-    elsif @player.total > @dealer.total
-      :win
-    else
-      :lose
+    case @player.total <=> @dealer.total
+    when 1 then :win
+    when -1 then :lose
+    else :draw
     end
   end
 
