@@ -42,29 +42,29 @@ class App
 
     if @player.bust?
       puts "#{@player.total}点でバストしました。"
-      :lose
+      return :lose
+    end
+
+    puts "ディーラーの2枚目のカードは#{@dealer.cards[1]}でした。"
+
+    begin
+      puts "ディーラーの現在の得点は#{@dealer.total}です。"
+    end while dealer_hit?
+
+    if @dealer.bust?
+      puts "#{@dealer.total}点でバストしました。"
+      return :win
+    end
+
+    puts "あなたの得点は#{@player.total}です。"
+    puts "ディーラーの得点は#{@dealer.total}です。"
+
+    if @player.total == @dealer.total
+      :draw
+    elsif @player.total > @dealer.total
+      :win
     else
-      puts "ディーラーの2枚目のカードは#{@dealer.cards[1]}でした。"
-
-      begin
-        puts "ディーラーの現在の得点は#{@dealer.total}です。"
-      end while dealer_hit?
-
-      if @dealer.bust?
-        puts "#{@dealer.total}点でバストしました。"
-        :win
-      else
-        puts "あなたの得点は#{@player.total}です。"
-        puts "ディーラーの得点は#{@dealer.total}です。"
-
-        if @player.total == @dealer.total
-          :draw
-        elsif @player.total > @dealer.total
-          :win
-        else
-          :lose
-        end
-      end
+      :lose
     end
   end
 
