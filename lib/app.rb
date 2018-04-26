@@ -8,9 +8,7 @@ class App
   end
 
   def run
-    @cards = generate_cards
-    @player = Player.new(*@cards.shift(2))
-    @dealer = Dealer.new(*@cards.shift(2))
+    init_app
 
     puts "ブラックジャックへようこそ！"
     puts "ゲームを開始します。"
@@ -68,16 +66,18 @@ class App
 
   private
 
+  def init_app
+    @cards = generate_cards
+    @player = Player.new(*@cards.shift(2))
+    @dealer = Dealer.new(*@cards.shift(2))
+  end
+
   def show_player_card(card)
     puts "あなたの引いたカードは#{card}です。"
   end
 
   def show_dealer_card(card)
     puts "ディーラーの引いたカードは#{card}です。"
-  end
-
-  def judge
-
   end
 
   def generate_cards
