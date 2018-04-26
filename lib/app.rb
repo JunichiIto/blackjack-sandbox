@@ -8,11 +8,14 @@ class App
   end
 
   def run
+    @results = []
     puts "ブラックジャックへようこそ！"
+    puts_blank_row
     begin
       init_app
       show_intro
       result = play_game
+      @results << result
       show_outro(result)
     end while try_again?
     puts "さようなら。また遊んでね★"
@@ -27,7 +30,7 @@ class App
   end
 
   def show_intro
-    puts "ゲームを開始します。"
+    puts "【第#{ordinal_count}回戦】ゲームを開始します。"
     puts_blank_row
 
     @player.cards.each do |card|
@@ -80,6 +83,14 @@ class App
 
   def show_outro(result)
     puts result_text(result)
+    puts_blank_row
+
+    win, lose, draw = result_counts
+    puts "対戦成績: #{win}勝#{lose}敗#{draw}分"
+
+    count_all = win + lose
+    percentage = count_all.zero? ? 0.0 : 100.0 * win / (win + lose)
+    puts "勝率: #{percentage.floor(1)}%"
   end
 
   def try_again?
@@ -130,6 +141,16 @@ class App
     when :draw then "引き分けです。"
     else raise "Unknown result: #{result}"
     end
+  end
+
+  def ordinal_count
+    @results.size + 1
+  end
+
+  def result_counts
+    @results
+      .each_with_object(Hash.new(0)) { |result, h| h[result] += 1 }
+      .values_at(:win, :lose, :draw)
   end
 
   def puts_blank_row
