@@ -9,17 +9,17 @@ describe Dealer do
     end
   end
 
-  describe '#hit_more?' do
+  describe '#finished?' do
     context 'less than 17' do
       it 'returns true' do
         dealer = Dealer.new(Card.new(:heart, 'J'), Card.new(:heart, '6'))
-        expect(dealer.hit_more?).to be_truthy
+        expect(dealer.finished?).to be_falsey
       end
     end
     context 'equal to 17' do
       it 'returns false' do
         dealer = Dealer.new(Card.new(:heart, 'J'), Card.new(:heart, '7'))
-        expect(dealer.hit_more?).to be_falsey
+        expect(dealer.finished?).to be_truthy
       end
     end
   end

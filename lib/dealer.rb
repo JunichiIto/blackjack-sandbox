@@ -9,7 +9,7 @@ class Dealer
     @cards = [first_card, second_card]
   end
 
-  def hit_more?
-    total < 17
+  def finished?
+    total >= 17
   end
 end
