@@ -330,7 +330,7 @@ describe App do
           y/n: 
           あなたの引いたカードはクラブのKです。
           あなたの得点は21です。
-
+          press return: 
           ディーラーの2枚目のカードはダイヤの2でした。
           ディーラーの現在の得点は10です。
           press return: 
@@ -381,7 +381,7 @@ describe App do
         allow(app).to receive(:generate_cards).and_return(cards)
         allow(app).to receive(:gets).and_return(
           'y', 'y', 'y',
-          'y', '', '', 'y',
+          'y', '', '', '', 'y',
           'n', '', '', 'n',
         )
         expect { app.run }.to output(expected).to_stdout

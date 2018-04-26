@@ -110,6 +110,7 @@ class App
     if finished
       if @player.twenty_one?
         show_player_total
+        gets_return
       end
     else
       puts "あなたの現在の得点は#{@player.total}です。"
