@@ -329,9 +329,8 @@ describe App do
           カードを引きますか？
           y/n: 
           あなたの引いたカードはクラブのKです。
-          あなたの現在の得点は21です。
-          カードを引きますか？
-          y/n: 
+          あなたの得点は21です。
+
           ディーラーの2枚目のカードはダイヤの2でした。
           ディーラーの現在の得点は10です。
           press return: 
@@ -382,7 +381,7 @@ describe App do
         allow(app).to receive(:generate_cards).and_return(cards)
         allow(app).to receive(:gets).and_return(
           'y', 'y', 'y',
-          'y', 'n', '', '', 'y',
+          'y', '', '', 'y',
           'n', '', '', 'n',
         )
         expect { app.run }.to output(expected).to_stdout

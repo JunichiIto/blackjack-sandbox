@@ -50,31 +50,32 @@ class App
   end
 
   def play_game
-    begin
-      puts "あなたの現在の得点は#{@player.total}です。"
-      puts "カードを引きますか？"
-    end while player_hit? && !@player.bust?
+    loop do
+      continue = player_hit? && @player.hit_more?
+      break unless continue
+    end
 
     if @player.bust?
       puts "#{@player.total}点でバストしました。"
       return :lose
+    elsif @player.twenty_one?
+      show_player_total
     end
 
     puts_blank_row
     puts "ディーラーの2枚目のカードは#{@dealer.cards[1]}でした。"
 
-    begin
-      puts "ディーラーの現在の得点は#{@dealer.total}です。"
-      gets_return
-      puts_blank_row
-    end while dealer_hit?
+    loop do
+      continue = dealer_hit?
+      break unless continue
+    end
 
     if @dealer.bust?
       puts "ディーラーは#{@dealer.total}点でバストしました。"
       return :win
     end
 
-    puts "あなたの得点は#{@player.total}です。"
+    show_player_total
     puts "ディーラーの得点は#{@dealer.total}です。"
 
     case @player.total <=> @dealer.total
@@ -109,6 +110,8 @@ class App
   end
 
   def player_hit?
+    puts "あなたの現在の得点は#{@player.total}です。"
+    puts "カードを引きますか？"
     if gets_yes?
       puts_blank_row
       card = @cards.shift
@@ -119,6 +122,9 @@ class App
   end
 
   def dealer_hit?
+    puts "ディーラーの現在の得点は#{@dealer.total}です。"
+    gets_return
+    puts_blank_row
     if @dealer.hit_more?
       card = @cards.shift
       show_dealer_card(card)
@@ -146,6 +152,10 @@ class App
 
   def show_dealer_card(card)
     puts "ディーラーの引いたカードは#{card}です。"
+  end
+
+  def show_player_total
+    puts "あなたの得点は#{@player.total}です。"
   end
 
   def result_text(result)

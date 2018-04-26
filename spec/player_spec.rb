@@ -9,6 +9,35 @@ describe Player do
     end
   end
 
+  describe '#hit_more?, #twenty_one?' do
+    context 'less than 21' do
+      it 'behaves properly' do
+        player = Player.new(Card.new(:heart, 'J'), Card.new(:heart, 'Q'))
+        expect(player.total).to eq 20
+        expect(player.hit_more?).to be_truthy
+        expect(player.twenty_one?).to be_falsey
+      end
+    end
+    context 'equal to 21' do
+      it 'behaves properly' do
+        player = Player.new(Card.new(:heart, 'J'), Card.new(:heart, 'Q'))
+        player.hit(Card.new(:heart, 'A'))
+        expect(player.total).to eq 21
+        expect(player.hit_more?).to be_falsey
+        expect(player.twenty_one?).to be_truthy
+      end
+    end
+    context 'greater than 21' do
+      it 'behaves properly' do
+        player = Player.new(Card.new(:heart, 'J'), Card.new(:heart, 'Q'))
+        player.hit(Card.new(:heart, '2'))
+        expect(player.total).to eq 22
+        expect(player.hit_more?).to be_falsey
+        expect(player.twenty_one?).to be_falsey
+      end
+    end
+  end
+
   describe '#bust?' do
     context 'equal to 21' do
       it 'returns false' do
