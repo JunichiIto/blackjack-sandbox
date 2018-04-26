@@ -128,8 +128,11 @@ class App
   end
 
   def gets_yes?
-    print "y/n: "
-    gets.chomp.downcase == 'y'
+    begin
+      print "y/n: "
+      input = gets.chomp.downcase
+    end until %w(y n).include?(input)
+    input == 'y'
   end
 
   def gets_return
