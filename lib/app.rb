@@ -63,7 +63,7 @@ class App
     begin
       puts "ディーラーの現在の得点は#{@dealer.total}です。"
       print 'press return: '
-      STDIN.gets
+      gets
       puts_blank_row
     end while dealer_hit?
 
@@ -98,7 +98,7 @@ class App
     puts_blank_row
     puts "ブラックジャック終了！もう一度遊びますか？"
     print "y/n: "
-    answer = STDIN.gets.chomp.downcase == 'y'
+    answer = gets.chomp.downcase == 'y'
     puts_blank_row
     answer
   end
@@ -109,7 +109,7 @@ class App
 
   def player_hit?
     print "y/n: "
-    if STDIN.gets.chomp.downcase == 'y'
+    if gets.chomp.downcase == 'y'
       puts_blank_row
       card = @cards.shift
       show_player_card(card)

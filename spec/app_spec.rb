@@ -42,7 +42,7 @@ describe App do
         example do
           app = App.new
           allow(app).to receive(:generate_cards).and_return(cards)
-          allow(STDIN).to receive(:gets).and_return('y', 'n')
+          allow(app).to receive(:gets).and_return('y', 'n')
           expect { app.run }.to output(expected).to_stdout
         end
       end
@@ -94,7 +94,7 @@ describe App do
         example do
           app = App.new
           allow(app).to receive(:generate_cards).and_return(cards)
-          allow(STDIN).to receive(:gets).and_return('n', '', '', 'n')
+          allow(app).to receive(:gets).and_return('n', '', '', 'n')
           expect { app.run }.to output(expected).to_stdout
         end
       end
@@ -147,7 +147,7 @@ describe App do
         example do
           app = App.new
           allow(app).to receive(:generate_cards).and_return(cards)
-          allow(STDIN).to receive(:gets).and_return('n', '', '', 'n')
+          allow(app).to receive(:gets).and_return('n', '', '', 'n')
           expect { app.run }.to output(expected).to_stdout
         end
       end
@@ -204,7 +204,7 @@ describe App do
         example do
           app = App.new
           allow(app).to receive(:generate_cards).and_return(cards)
-          allow(STDIN).to receive(:gets).and_return('y', 'n', '', '', 'n')
+          allow(app).to receive(:gets).and_return('y', 'n', '', '', 'n')
           expect { app.run }.to output(expected).to_stdout
         end
       end
@@ -257,7 +257,7 @@ describe App do
       example do
         app = App.new
         allow(app).to receive(:generate_cards).and_return(cards)
-        allow(STDIN).to receive(:gets).and_return('n', '', '', 'n')
+        allow(app).to receive(:gets).and_return('n', '', '', 'n')
         expect { app.run }.to output(expected).to_stdout
       end
     end
@@ -379,7 +379,7 @@ describe App do
       example do
         app = App.new
         allow(app).to receive(:generate_cards).and_return(cards)
-        allow(STDIN).to receive(:gets).and_return(
+        allow(app).to receive(:gets).and_return(
           'y', 'y', 'y',
           'y', 'n', '', '', 'y',
           'n', '', '', 'n',
