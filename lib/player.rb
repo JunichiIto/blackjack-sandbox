@@ -9,8 +9,8 @@ class Player
     @cards = [first_card, second_card]
   end
 
-  def hit_more?
-    total < 21
+  def finished?
+    total >= 21
   end
 
   def twenty_one?
