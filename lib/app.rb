@@ -72,7 +72,7 @@ class App
     end
 
     show_player_total
-    puts "ディーラーの得点は#{@dealer.total}です。"
+    show_dealer_total
 
     case @player.total <=> @dealer.total
     when 1 then :win
@@ -163,6 +163,10 @@ class App
 
   def show_player_total
     puts "あなたの得点は#{@player.total}です。"
+  end
+
+  def show_dealer_total
+    puts "ディーラーの得点は#{@dealer.total}です。"
   end
 
   def result_text(result)
