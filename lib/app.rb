@@ -51,23 +51,19 @@ class App
 
   def play_game
     loop do
-      continue = player_hit? && @player.hit_more?
-      break unless continue
+      break if player_hit_and_finished?
     end
 
     if @player.bust?
       puts "#{@player.total}点でバストしました。"
       return :lose
-    elsif @player.twenty_one?
-      show_player_total
     end
 
     puts_blank_row
     puts "ディーラーの2枚目のカードは#{@dealer.cards[1]}でした。"
 
     loop do
-      continue = dealer_hit?
-      break unless continue
+      break if dealer_hit_and_finished?
     end
 
     if @dealer.bust?
@@ -109,19 +105,25 @@ class App
     Card.generate_cards.shuffle
   end
 
-  def player_hit?
-    puts "あなたの現在の得点は#{@player.total}です。"
-    puts "カードを引きますか？"
-    if gets_yes?
-      puts_blank_row
-      card = @cards.shift
-      show_player_card(card)
-      @player.hit(card)
-      true
+  def player_hit_and_finished?
+    if @player.twenty_one?
+      show_player_total
+    elsif @player.hit_more?
+      puts "あなたの現在の得点は#{@player.total}です。"
+      puts "カードを引きますか？"
+      if gets_yes?
+        puts_blank_row
+        card = @cards.shift
+        show_player_card(card)
+        @player.hit(card)
+        return false
+      end
     end
+
+    true
   end
 
-  def dealer_hit?
+  def dealer_hit_and_finished?
     puts "ディーラーの現在の得点は#{@dealer.total}です。"
     gets_return
     puts_blank_row
@@ -129,6 +131,8 @@ class App
       card = @cards.shift
       show_dealer_card(card)
       @dealer.hit(card)
+      false
+    else
       true
     end
   end
