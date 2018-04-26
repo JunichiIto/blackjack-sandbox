@@ -36,8 +36,7 @@ class Card
       when :diamond then 'ダイヤ'
       when :club then 'クラブ'
       when :spade then 'スペード'
-      else
-        raise "Unknown suit: #{suit}"
+      else raise "Unknown suit: #{suit}"
       end
     "#{suit_str}の#{number}"
   end

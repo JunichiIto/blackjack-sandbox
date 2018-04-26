@@ -29,7 +29,7 @@ class App
 
     if @player.bust?
       puts "#{@player.total}点でバストしました。"
-      puts "あなたの負けです。"
+      result = :lose
     else
       puts "ディーラーの2枚目のカードは#{@dealer.cards[1]}でした。"
 
@@ -39,21 +39,30 @@ class App
 
       if @dealer.bust?
         puts "#{@dealer.total}点でバストしました。"
-        puts "あなたの勝ちです！"
+        result = :win
       else
         puts "あなたの得点は#{@player.total}です。"
         puts "ディーラーの得点は#{@dealer.total}です。"
 
         if @player.total == @dealer.total
-          puts "引き分けです。"
+          result = :draw
         elsif @player.total > @dealer.total
-          puts "あなたの勝ちです！"
+          result = :win
         else
-          puts "あなたの負けです。"
+          result = :lose
         end
       end
     end
 
+    result_text =
+      case result
+      when :win then "あなたの勝ちです！"
+      when :lose then "あなたの負けです。"
+      when :draw then "引き分けです。"
+      else raise "Unknown result: #{result}"
+      end
+
+    puts result_text
     puts "ブラックジャック終了！また遊んでね★"
   end
 
