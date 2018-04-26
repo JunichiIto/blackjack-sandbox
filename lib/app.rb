@@ -16,7 +16,7 @@ class App
     puts "ゲームを開始します。"
 
     @player.cards.each do |card|
-      puts "あなたが引いたカードは#{card}です。"
+      puts "あなたの引いたカードは#{card}です。"
     end
 
     puts "ディーラーの引いたカードは#{@dealer.cards[0]}です。"
