@@ -55,6 +55,8 @@ class App
 
     begin
       puts "ディーラーの現在の得点は#{@dealer.total}です。"
+      print 'press return: '
+      STDIN.gets
       puts_blank_row
     end while dealer_hit?
 
