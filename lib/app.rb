@@ -16,10 +16,10 @@ class App
     puts "ゲームを開始します。"
 
     @player.cards.each do |card|
-      puts "あなたの引いたカードは#{card}です。"
+      show_player_card(card)
     end
 
-    puts "ディーラーの引いたカードは#{@dealer.cards[0]}です。"
+    show_dealer_card(@dealer.cards[0])
     puts "ディーラーの2枚目のカードは分かりません。"
 
     begin
@@ -68,6 +68,18 @@ class App
 
   private
 
+  def show_player_card(card)
+    puts "あなたの引いたカードは#{card}です。"
+  end
+
+  def show_dealer_card(card)
+    puts "ディーラーの引いたカードは#{card}です。"
+  end
+
+  def judge
+
+  end
+
   def generate_cards
     Card.generate_cards.shuffle
   end
@@ -76,7 +88,7 @@ class App
     print "y/n: "
     if STDIN.gets.chomp.downcase == 'y'
       card = @cards.shift
-      puts "あなたの引いたカードは#{card}です。"
+      show_player_card(card)
       @player.hit(card)
       true
     end
@@ -85,7 +97,7 @@ class App
   def dealer_hit?
     if @dealer.hit_more?
       card = @cards.shift
-      puts "ディーラーの引いたカードは#{card}です。"
+      show_dealer_card(card)
       @dealer.hit(card)
       true
     end
