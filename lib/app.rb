@@ -32,6 +32,10 @@ class App
     @dealer = Dealer.new(*@cards.shift(2))
   end
 
+  def generate_cards
+    Card.generate_cards.shuffle
+  end
+
   def show_intro
     puts "【第#{ordinal_count}回戦】"
     puts "ゲームを開始します。"
@@ -114,18 +118,14 @@ class App
     answer
   end
 
-  def generate_cards
-    Card.generate_cards.shuffle
-  end
-
   def player_hit_or_stand
     puts "あなたの現在の得点は#{@player.total}です。"
     puts "カードを引きますか？"
     if gets_yes?
       puts_blank_row
       card = @cards.shift
-      show_player_card(card)
       @player.hit(card)
+      show_player_card(card)
     else
       @player.stand!
     end
@@ -136,8 +136,8 @@ class App
     gets_return
     puts_blank_row
     card = @cards.shift
-    show_dealer_card(card)
     @dealer.hit(card)
+    show_dealer_card(card)
   end
 
   def gets_yes?
