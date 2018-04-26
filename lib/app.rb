@@ -30,7 +30,8 @@ class App
   end
 
   def show_intro
-    puts "【第#{ordinal_count}回戦】ゲームを開始します。"
+    puts "【第#{ordinal_count}回戦】"
+    puts "ゲームを開始します。"
     puts_blank_row
 
     @player.cards.each do |card|
