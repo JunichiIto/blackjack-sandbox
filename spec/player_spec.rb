@@ -48,7 +48,7 @@ describe Player do
       end
     end
     context 'greater than 21' do
-      it 'returns false' do
+      it 'returns true' do
         player = Player.new(Card.new(:heart, 'J'), Card.new(:heart, 'Q'))
         player.hit(Card.new(:heart, '2'))
         expect(player.total).to eq 22
